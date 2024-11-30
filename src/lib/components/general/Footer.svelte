@@ -23,7 +23,7 @@
 			height: 22px;
 
 			background-image: url('icons/native-divider.svg');
-			background-size: contain;
+			background-size: cover;
 			background-repeat: no-repeat;
 		}
 

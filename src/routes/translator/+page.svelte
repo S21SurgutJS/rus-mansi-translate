@@ -45,6 +45,7 @@
 		display: grid;
 		grid-template-rows: min-content 1fr min-content;
 		height: 100vh;
+		padding-bottom: 50px;
 
 		background-image: radial-gradient(
 				at 99.11293262513044% 46.43232786340985%,
