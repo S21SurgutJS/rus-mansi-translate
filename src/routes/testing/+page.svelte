@@ -186,7 +186,7 @@
 			display: flex;
 			flex-direction: column;
 			gap: 5px;
-			margin-bottom: 110px;
+			margin-bottom: 100px;
 		}
 
 		&__header {
