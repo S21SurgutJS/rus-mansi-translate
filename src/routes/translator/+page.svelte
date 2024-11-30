@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Divider from '$lib/components/general/Divider.svelte';
+	import Footer from '$lib/components/general/Footer.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
+	import { fade } from 'svelte/transition';
 
 	let searchValue = $state('Остров');
 	let translateValue = $state('Тумп');
@@ -23,8 +25,9 @@
 					<span class="visually-hidden">Введите текст для перевода</span>
 				</label>
 				{#if searchValue}
-					<button class="translator__button" type="button">
+					<button class="translator__button" type="button" transition:fade>
 						<Icon iconId="right-arrow" width={27} height={25} />
+						<span class="visually-hidden">Перевести</span>
 					</button>
 				{/if}
 			</form>
@@ -34,10 +37,13 @@
 			{/if}
 		</main>
 	</div>
+	<Footer />
 </div>
 
 <style lang="postcss">
 	.translator {
+		display: grid;
+		grid-template-rows: min-content 1fr min-content;
 		height: 100vh;
 
 		background-image: radial-gradient(
@@ -111,20 +117,12 @@
 		}
 
 		&__main {
+			position: relative;
+
 			background-color: white;
 			border-radius: 0 0 11px 11px;
 
-			overflow: hidden;
-		}
-
-		&__form {
-			position: relative;
-		}
-
-		&__label {
-			position: relative;
-
-			display: block;
+			/* overflow: hidden; */
 
 			&::before {
 				position: absolute;
@@ -139,11 +137,14 @@
 				background-size: cover;
 
 				transform: translate(1px, -1px);
+
+				z-index: 100;
 			}
 
 			&::after {
 				position: absolute;
 				top: 0;
+				right: -11px;
 				content: '';
 
 				width: 11px;
@@ -153,6 +154,19 @@
 				background-size: cover;
 				transform: translate(-1px, -1px);
 			}
+		}
+
+		&__form {
+			position: relative;
+
+			border-radius: 0 0 11px 11px;
+			overflow: hidden;
+		}
+
+		&__label {
+			position: relative;
+
+			display: block;
 		}
 
 		&__textarea {
