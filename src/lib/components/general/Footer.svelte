@@ -5,13 +5,13 @@
 <footer class="footer">
 	<div class="footer__divider"></div>
 	<nav class="footer__nav">
-		<a class="footer__link" href="/">
+		<a class="footer__link" href="/tales">
 			<Icon iconId="book" width={33} height={26} />
 		</a>
 		<a class="footer__link" href="/">
 			<Icon iconId="translator" width={33} height={29} />
 		</a>
-		<a class="footer__link" href="/">
+		<a class="footer__link" href="/testing">
 			<Icon iconId="testing" width={33} height={26} />
 		</a>
 	</nav>
