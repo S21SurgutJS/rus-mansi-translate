@@ -1,0 +1,73 @@
+.link {
+	cursor: pointer;
+}
+
+link:hover {
+	text-decoration: none;
+	color: var(--dark-primary);
+}
+
+.link_light {
+	color: white;
+}
+
+.link_light:hover {
+	color: var(--primary);
+}
+
+.link_dark {
+	color: var(--dark);
+}
+
+.link_dark:hover {
+	color: var(--hover-color);
+}
+
+.link_gray {
+	color: var(--grey);
+}
+
+.link_gray:hover {
+	color: var(--primary);
+}
+
+/* .link_danger {
+	color: $danger;
+	opacity: 0.5;
+
+	&:hover {
+		opacity: 1;
+	}
+} */
+
+.link_primary {
+	color: var(--primary);
+}
+
+.link_primary:hover {
+	color: var(--white);
+}
+
+.link_underlined {
+	border-bottom: 2px solid var(--primary);
+	padding-bottom: 5px;
+	display: inline-block;
+}
+
+.link_underlined:hover {
+	color: unset;
+}
+
+.link_dotted {
+	border-bottom: 1px dotted var(--dark);
+}
+
+.link_dashed {
+	border-bottom: 1px dashed var(--dark);
+}
+
+.link__icon {
+	vertical-align: middle;
+	margin-right: 5px;
+	line-height: 16px;
+}

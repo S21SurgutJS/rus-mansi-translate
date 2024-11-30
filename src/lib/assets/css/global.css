@@ -1,0 +1,58 @@
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+
+	font-family: 'PT-Sans', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--dark);
+	/* font-family: 'Roboto', sans-serif; */
+}
+
+/* Скрол для Chrome/Edge/Safari */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--gray);
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--dark);
+}
+
+/* Скролл для Fite-fox */
+html {
+	background-color: var(--white);
+
+	scrollbar-width: thin;
+	scrollbar-color: var(--gray) #ffffff;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+html,
+body {
+	scroll-behavior: smooth;
+}
