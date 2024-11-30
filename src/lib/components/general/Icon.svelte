@@ -7,13 +7,7 @@
 </script>
 
 {#if iconId}
-	<svg
-		viewBox="0 0 {width} {height}"
-		{width}
-		{height}
-		fill="var(--{fill})"
-		class={$$props.class}
-	>
+	<svg viewBox="0 0 {width} {height}" {width} {height} fill="var(--{fill})" class={$$props.class}>
 		<use xlink:href="/icons/sprite.svg#{iconId}" />
 	</svg>
 {/if}

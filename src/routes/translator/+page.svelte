@@ -1,0 +1,197 @@
+<script lang="ts">
+	import Divider from '$lib/components/general/Divider.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
+
+	let searchValue = $state('Остров');
+	let translateValue = $state('Тумп');
+</script>
+
+<div class="translator">
+	<header class="translator__header">
+		<LanguageToggler />
+	</header>
+	<div class="translator__container container mx-auto">
+		<main class="translator__main">
+			<form class="translator__form">
+				<label class="translator__label">
+					<textarea
+						bind:value={searchValue}
+						class="translator__textarea"
+						placeholder="Введите текст"
+					></textarea>
+					<span class="visually-hidden">Введите текст для перевода</span>
+				</label>
+				{#if searchValue}
+					<button class="translator__button" type="button">
+						<Icon iconId="right-arrow" width={27} height={25} />
+					</button>
+				{/if}
+			</form>
+			{#if translateValue}
+				<Divider />
+				<p class="translator__result">{translateValue}</p>
+			{/if}
+		</main>
+	</div>
+</div>
+
+<style lang="postcss">
+	.translator {
+		height: 100vh;
+
+		background-image: radial-gradient(
+				at 99.11293262513044% 46.43232786340985%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 1) 0%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 0) 100%
+			),
+			radial-gradient(
+				at 37.09849543078019% 41.927324850067805%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 1) 0%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 0) 100%
+			),
+			radial-gradient(
+				at 1.8345066091675077% 55.22002448610755%,
+				hsla(128.57142857142858, 34.99999999999999%, 23.52941176470588%, 1) 0%,
+				hsla(128.57142857142858, 34.99999999999999%, 23.52941176470588%, 0) 100%
+			),
+			radial-gradient(
+				at 96.3192387289689% 70.54505863696747%,
+				hsla(23.84615384615384, 40.206185567010316%, 38.03921568627451%, 1) 0%,
+				hsla(23.84615384615384, 40.206185567010316%, 38.03921568627451%, 0) 100%
+			),
+			radial-gradient(
+				at 57.56247481410588% 4.45178066154619%,
+				hsla(33.96226415094339, 72.6027397260274%, 42.94117647058824%, 1) 0%,
+				hsla(33.96226415094339, 72.6027397260274%, 42.94117647058824%, 0) 100%
+			),
+			radial-gradient(
+				at 86.60266980982459% 65.3320114933279%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 1) 0%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 0) 100%
+			),
+			radial-gradient(
+				at 66.28004718355518% 52.297287086274146%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 1) 0%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 0) 100%
+			),
+			radial-gradient(
+				at 21.991722964045145% 26.549432513155047%,
+				hsla(128.57142857142858, 34.99999999999999%, 23.52941176470588%, 1) 0%,
+				hsla(128.57142857142858, 34.99999999999999%, 23.52941176470588%, 0) 100%
+			),
+			radial-gradient(
+				at 40.22948936091082% 22.24130418812773%,
+				hsla(23.84615384615384, 40.206185567010316%, 38.03921568627451%, 1) 0%,
+				hsla(23.84615384615384, 40.206185567010316%, 38.03921568627451%, 0) 100%
+			),
+			radial-gradient(
+				at 65.91116707604195% 87.65678640360149%,
+				hsla(33.96226415094339, 72.6027397260274%, 42.94117647058824%, 1) 0%,
+				hsla(33.96226415094339, 72.6027397260274%, 42.94117647058824%, 0) 100%
+			),
+			radial-gradient(
+				at 29.392354655473607% 7.0441099272863905%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 1) 0%,
+				hsla(0, 57.67195767195767%, 37.05882352941177%, 0) 100%
+			),
+			radial-gradient(
+				at 10.070092600065905% 81.7587757790269%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 1) 0%,
+				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 0) 100%
+			);
+
+		&__header {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 15px;
+
+			background-color: white;
+		}
+
+		&__main {
+			background-color: white;
+			border-radius: 0 0 11px 11px;
+
+			overflow: hidden;
+		}
+
+		&__form {
+			position: relative;
+		}
+
+		&__label {
+			position: relative;
+
+			display: block;
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: -11px;
+				content: '';
+
+				width: 11px;
+				height: 11px;
+
+				background-image: url('icons/left-angle.svg');
+				background-size: cover;
+
+				transform: translate(1px, -1px);
+			}
+
+			&::after {
+				position: absolute;
+				top: 0;
+				content: '';
+
+				width: 11px;
+				height: 11px;
+
+				background-image: url('icons/right-angle.svg');
+				background-size: cover;
+				transform: translate(-1px, -1px);
+			}
+		}
+
+		&__textarea {
+			width: 100%;
+			min-height: 100px;
+			padding: 20px 14px;
+
+			font-family: 'PT-Sans', sans-serif;
+			font-weight: 700;
+			font-size: 15px;
+			color: var(--black);
+
+			resize: none;
+
+			&::placeholder {
+				color: #c3c3c3;
+			}
+
+			&:focus {
+				outline: none;
+			}
+		}
+
+		&__button {
+			position: absolute;
+			right: 14px;
+			bottom: 14px;
+
+			/* z-index: 100; */
+		}
+
+		&__result {
+			width: 100%;
+			min-height: 100px;
+			padding: 20px 14px;
+
+			font-weight: 700;
+			font-size: 15px;
+			color: var(--black);
+		}
+	}
+</style>
