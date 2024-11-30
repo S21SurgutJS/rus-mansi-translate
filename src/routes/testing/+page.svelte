@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Divider from '$lib/components/general/Divider.svelte';
 	import Footer from '$lib/components/general/Footer.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
 	import { BaseApi } from '$lib/plugins/api/modules';
+	import { settings } from '$lib/stores/notifyStore';
 	import { fade } from 'svelte/transition';
 
 	let searchValue = $state('');
@@ -14,25 +16,27 @@
 
 	const customFetch = new BaseApi(fetch);
 
-	async function translate() {
-		const sourceLanguage = language === 'ru' ? 'rus_Cyrl' : 'mancy_Cyrl';
-		const targetLanguage = language === 'ru' ? 'mancy_Cyrl' : 'rus_Cyrl';
+	// async function translate() {
+	// 	const sourceLanguage = language === 'ru' ? 'rus_Cyrl' : 'mancy_Cyrl';
+	// 	const targetLanguage = language === 'ru' ? 'mancy_Cyrl' : 'rus_Cyrl';
 
-		isLoading = true;
+	// 	isLoading = true;
 
-		const res = await customFetch.proxyFetch({
-			text: searchValue,
-			sourceLanguage,
-			targetLanguage
-		});
-		isLoading = false;
-		console.log(res.ok);
-		translateValue = res.translatedText;
-	}
+	// 	const res = await customFetch.proxyFetch({
+	// 		text: searchValue,
+	// 		sourceLanguage,
+	// 		targetLanguage
+	// 	});
+	// 	isLoading = false;
+	// 	console.log(res.ok);
+	// 	translateValue = res.translatedText;
+	// }
 
-	function reset() {
-		searchValue = '';
-		translateValue = '';
+	function startTesting() {
+		$settings.difficulty = difficulty;
+		$settings.language = language;
+		console.log($settings);
+		// goto('/testing/questions');
 	}
 </script>
 
@@ -89,7 +93,14 @@
 						Предложения
 					</button>
 				</div>
-				<button class="testing__next-button button" type="button">Продолжить</button>
+				<button
+					class="testing__next-button button"
+					type="button"
+					onclick={startTesting}
+					disabled={!language || !difficulty}
+				>
+					Продолжить
+				</button>
 			</div>
 		</main>
 	</div>
@@ -253,64 +264,12 @@
 			}
 		}
 
-		&__form {
-			position: relative;
-
-			border-radius: 0 0 11px 11px;
-			overflow: hidden;
-		}
-
-		&__label {
-			position: relative;
-
-			display: block;
-		}
-
-		&__textarea {
-			width: 100%;
-			min-height: 250px;
-			padding: 20px;
-
-			font-family: 'PT-Sans', sans-serif;
-			font-size: 20px;
-			font-weight: 400;
-			color: var(--black);
-
-			resize: none;
-
-			&::placeholder {
-				color: #c3c3c3;
-			}
-
-			&:focus {
-				outline: none;
-			}
-		}
-
-		&__button {
-			position: absolute;
-			right: 20px;
-			bottom: 14px;
-		}
-
-		&__reset {
-			position: absolute;
-			right: 20px;
-			top: 3px;
-		}
-
-		&__result {
-			width: 100%;
-			min-height: 250px;
-			padding: 20px 20px;
-
-			font-size: 20px;
-			font-weight: 400;
-			color: var(--black);
-		}
-
 		&__next-button {
 			width: 100%;
+
+			&:disabled {
+				opacity: 0.5;
+			}
 		}
 	}
 
