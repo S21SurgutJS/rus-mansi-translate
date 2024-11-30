@@ -1,18 +1,18 @@
 import { browser } from '$app/environment';
-// import type { ProxyData } from '$lib/types/types';
 import { ApiError } from '..';
-// import { env } from '$env/dynamic/public';
+
+type languageType = 'rus_Cyrl' | 'mancy_Cyrl';
 
 export type ProxyData = {
-	url: string;
-	body?: object;
-	contentType?: 'json' | 'formData';
+	text: string;
+	sourceLanguage: languageType;
+	targetLanguage: languageType;
 };
 
 export interface Fetch {
 	(input: string | URL | globalThis.Request, init?: RequestInit): Promise<Response>;
 }
-export abstract class BaseApi {
+export class BaseApi {
 	protected readonly customFetch: Fetch;
 
 	constructor(fetchFunc: Fetch) {
@@ -31,26 +31,14 @@ export abstract class BaseApi {
 		}
 	}
 
-	protected async proxyFetch(payload: ProxyData) {
-		let res;
-		if (payload.contentType === 'formData') {
-			if (!(payload.body instanceof FormData)) {
-				throw new Error('Invalid payload body for formData content type');
+	async proxyFetch(payload: ProxyData) {
+		const res = await this.customFetch(`http://91.198.71.199:7012/translator`, {
+			method: 'POST',
+			body: JSON.stringify(payload),
+			headers: {
+				'Content-Type': 'application/json'
 			}
-			res = await this.customFetch(`http://localhost:5173/api/uploads`, {
-				method: 'POST',
-				body: payload?.body
-			});
-		} else {
-			res = await this.customFetch(`http://localhost:5173/api`, {
-				method: 'POST',
-				body: JSON.stringify(payload),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-		}
-		// const res = await this.customFetch(`${env.PUBLIC_FRONT_URL}/api`, {
+		});
 
 		if (!res.ok) {
 			throw new ApiError(res.status, await res.json());

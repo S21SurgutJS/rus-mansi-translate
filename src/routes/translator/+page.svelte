@@ -3,17 +3,43 @@
 	import Footer from '$lib/components/general/Footer.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
 	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
+	import { BaseApi } from '$lib/plugins/api/modules';
 	import { fade } from 'svelte/transition';
 
-	let searchValue = $state('Остров');
-	let translateValue = $state('Тумп');
+	let searchValue = $state('');
+	let translateValue = $state('');
+	let language = $state('');
+	let isLoading = $state(false);
+
+	const customFetch = new BaseApi(fetch);
+
+	async function translate() {
+		const sourceLanguage = language === 'ru' ? 'rus_Cyrl' : 'mancy_Cyrl';
+		const targetLanguage = language === 'ru' ? 'mancy_Cyrl' : 'rus_Cyrl';
+
+		isLoading = true;
+
+		const res = await customFetch.proxyFetch({
+			text: searchValue,
+			sourceLanguage,
+			targetLanguage
+		});
+		isLoading = false;
+		console.log(res.ok);
+		translateValue = res.translatedText;
+	}
+
+	function reset() {
+		searchValue = '';
+		translateValue = '';
+	}
 </script>
 
 <div class="translator">
 	<header class="translator__header">
-		<LanguageToggler />
+		<LanguageToggler bind:language {reset} />
 	</header>
-	<div class="translator__container container mx-auto">
+	<div class="translator__container container">
 		<main class="translator__main">
 			<form class="translator__form">
 				<label class="translator__label">
@@ -25,16 +51,18 @@
 					<span class="visually-hidden">Введите текст для перевода</span>
 				</label>
 				{#if searchValue}
-					<button class="translator__button" type="button" transition:fade>
+					<button class="translator__button" type="button" transition:fade onclick={translate}>
 						<Icon iconId="right-arrow" width={27} height={25} />
 						<span class="visually-hidden">Перевести</span>
 					</button>
 				{/if}
+				<button class="translator__reset" type="button" onclick={reset}>
+					<Icon iconId="cross" width={24} height={24} />
+					<span class="visually-hidden">Очистить окно</span>
+				</button>
 			</form>
-			{#if translateValue}
-				<Divider />
-				<p class="translator__result">{translateValue}</p>
-			{/if}
+			<Divider />
+			<p class="translator__result">{translateValue}</p>
 		</main>
 	</div>
 	<Footer />
@@ -45,7 +73,6 @@
 		display: grid;
 		grid-template-rows: min-content 1fr min-content;
 		height: 100vh;
-		padding-bottom: 50px;
 
 		background-image: radial-gradient(
 				at 99.11293262513044% 46.43232786340985%,
@@ -108,6 +135,12 @@
 				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 0) 100%
 			);
 
+		&__container {
+			max-width: 370px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+
 		&__header {
 			display: flex;
 			justify-content: center;
@@ -122,8 +155,6 @@
 
 			background-color: white;
 			border-radius: 0 0 11px 11px;
-
-			/* overflow: hidden; */
 
 			&::before {
 				position: absolute;
@@ -172,12 +203,12 @@
 
 		&__textarea {
 			width: 100%;
-			min-height: 100px;
-			padding: 20px 14px;
+			min-height: 250px;
+			padding: 20px;
 
 			font-family: 'PT-Sans', sans-serif;
-			font-weight: 700;
-			font-size: 15px;
+			font-size: 20px;
+			font-weight: 400;
 			color: var(--black);
 
 			resize: none;
@@ -193,19 +224,23 @@
 
 		&__button {
 			position: absolute;
-			right: 14px;
+			right: 20px;
 			bottom: 14px;
+		}
 
-			/* z-index: 100; */
+		&__reset {
+			position: absolute;
+			right: 20px;
+			top: 3px;
 		}
 
 		&__result {
 			width: 100%;
-			min-height: 100px;
-			padding: 20px 14px;
+			min-height: 250px;
+			padding: 20px 20px;
 
-			font-weight: 700;
-			font-size: 15px;
+			font-size: 20px;
+			font-weight: 400;
 			color: var(--black);
 		}
 	}

@@ -2,21 +2,17 @@
 	import Icon from './Icon.svelte';
 </script>
 
-<div class="container">
-	<div class="divider">
-		<div class="divider__icon-wrapper">
-			<Icon iconId="hm-logo" width={27} height={13} />
-		</div>
+<div class="divider">
+	<div class="divider__icon-wrapper">
+		<Icon iconId="hm-logo" width={27} height={13} />
 	</div>
 </div>
 
 <style lang="postcss">
 	.divider {
-		/* position: relative; */
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		/* height: 100%; */
 
 		&::before,
 		&::after {
