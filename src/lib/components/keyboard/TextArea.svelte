@@ -15,6 +15,7 @@
         class={generateClass()}
         placeholder="Введите текст"
         onclick={()=>openKeyboard()}
+        readonly
 ></textarea>
 
 <style>
