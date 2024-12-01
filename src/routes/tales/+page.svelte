@@ -1,5 +1,15 @@
 <script lang="ts">
 	import Footer from '$lib/components/general/Footer.svelte';
+
+	document.addEventListener(
+		'selectionchange',
+		function (event) {
+			console.log('fdfs');
+			event.currentTarget;
+			const selection = getSelection().toString();
+		},
+		false
+	);
 </script>
 
 <div class="tales">
@@ -9,7 +19,21 @@
 	<div class="tales__container">
 		<main class="tales__main">
 			<div class="tales__wrapper">
-				<p class="tales__description">Выберите язык, с которого будет осуществляться перевод</p>
+				<p
+					class="tales__description"
+					on:selectionchange={() => {
+						console.log('change');
+					}}
+				>
+					А̄кврись - а̄кврись, тучаӈын хо̄та?<br /> - А̄мпын то̄твес.<br /> - А̄мпе хо̄та?<br /> - Во̄рна
+					мӣнас.<br /> - Во̄ре хо̄та?<br />
+					- На̄йна та̄йвес.<br /> - На̄йе хо̄та?<br /> - Раквна харыгтавес.<br /> — Ракве хо̄та?<br /> -
+					Ма̄на посыс.<br /> - Матэ хо̄та?<br />
+					- Виткасьна нильвес.<br /> - Виткасе хо̄та?<br /> - Тит ня̄лыу ё̄втыӈ пыгрисяквēгн ня̄лыл
+					па̄хвтувес.<br /> - Тит ня̄лын ё̄втыӈ пыгрисяквēга хо̄т?<br /> - Эт хулм я̄ӈкын ра̄гпысыг.<br />
+					- Эт хулм я̄ӈке хо̄та?<br /> - Хотална толтвес.<br /> — Хо̄талэ хо̄та?<br /> - Тул са̄йна
+					па̄тырас.<br />
+				</p>
 			</div>
 		</main>
 	</div>
@@ -94,21 +118,6 @@
 			margin: 0 auto;
 		}
 
-		&__language {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			gap: 10px;
-			margin-bottom: 60px;
-		}
-
-		&__difficulty {
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-			margin-bottom: 100px;
-		}
-
 		&__header {
 			display: flex;
 			justify-content: center;
@@ -124,19 +133,19 @@
 		}
 
 		&__description {
-			margin-bottom: 20px;
-
-			font-size: 24px;
+			font-size: 20px;
 			font-weight: 400;
 			text-align: center;
+
+			overflow-x: scroll;
 		}
 
 		&__main {
 			position: relative;
 
 			/* height: calc(100% - 20px); */
-			padding-top: 100px;
-			padding-bottom: 20px;
+			padding-top: 10px;
+			padding-bottom: 10px;
 
 			background-color: white;
 			border-radius: 0 0 11px 11px;
