@@ -31,8 +31,8 @@
 						<li class="result__item item">
 							<p class="item__number">{idx + 1}</p>
 							<div class="result__wrapper">
-								<p class="item__word">{item.word} - {item.translation}</p>
-								<p class="item__answer">Ваш ответ: {item.answer}</p>
+								<p class="item__word">{item.word} - {item.answer}</p>
+								<p class="item__answer">Мой ответ: {item.translation}</p>
 							</div>
 							{#if item.correct}
 								<Icon iconId="correct-answer" width={26} height={19} />
@@ -115,6 +115,12 @@
 				hsla(194.69387755102042, 44.144144144144136%, 21.764705882352942%, 0) 100%
 			);
 
+		&__list {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+
 		&__container {
 			width: 370px;
 			margin-right: auto;
@@ -163,7 +169,9 @@
 		}
 
 		&__congratulation {
+			margin-bottom: 20px;
 			font-size: 20px;
+			text-align: center;
 		}
 
 		&__description {
@@ -177,7 +185,7 @@
 		&__wrapper {
 			display: flex;
 			flex-direction: column;
-			gap: 10px;
+			gap: 5px;
 		}
 
 		&__main {
@@ -266,12 +274,15 @@
 
 		&__word {
 			font-size: 20px;
+			line-height: 1;
+
 			font-weight: 700;
 
 			color: #404040;
 		}
 		&__answer {
 			font-size: 14px;
+			line-height: 1;
 			font-weight: 700;
 			color: #959595;
 		}
