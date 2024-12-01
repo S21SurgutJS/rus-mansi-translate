@@ -81,12 +81,12 @@
 					<!--					></textarea>-->
 					<span class="visually-hidden">Введите текст для перевода</span>
 				</label>
-				{#if searchValue}
-					<button class="translator__button" type="button" transition:fade onclick={translate}>
-						<Icon iconId="right-arrow" width={27} height={25} />
-						<span class="visually-hidden">Перевести</span>
-					</button>
-				{/if}
+
+				<button class="translator__button" type="button" transition:fade onclick={searchValue ? translate : null}>
+					<Icon iconId="right-arrow" width={27} height={25} />
+					<span class="visually-hidden">Перевести</span>
+				</button>
+
 				<button class="translator__reset" type="button" onclick={reset}>
 					<Icon iconId="cross" width={24} height={24} />
 					<span class="visually-hidden">Очистить окно</span>

@@ -1,5 +1,5 @@
 <script>
-	let { data = $bindable(), taskTranslation = $bindable(), searchValue= $bindable(), value, classForTextArea, openKeyboard } = $props()
+	let { data = $bindable(), taskTranslation=$bindable(), searchValue=$bindable(), value, classForTextArea, openKeyboard } = $props()
 
     function generateClass () {
 		if (classForTextArea) {
@@ -11,7 +11,7 @@
 
 
 <textarea
-        bind:value
+        bind:value={searchValue}
         class={generateClass()}
         placeholder="Введите текст"
         onclick={()=>openKeyboard()}
