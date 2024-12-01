@@ -21,7 +21,7 @@
 		isLoading = true;
 
 		const res = await customFetch.proxyFetch({
-			text: searchValue,
+			text: searchValue.toLowerCase(),
 			sourceLanguage,
 			targetLanguage
 		});
