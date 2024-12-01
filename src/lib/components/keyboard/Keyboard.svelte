@@ -7,11 +7,11 @@
 
 	function addValueToTextArea (value) {
 		if (data.caps) {
-			data.textAreaValue += value.toUpperCase()
             searchValue += value.toUpperCase()
+			taskTranslation += value.toUpperCase()
 		} else {
-			data.textAreaValue += value.toLowerCase()
             searchValue += value.toLowerCase()
+			taskTranslation += value.toLowerCase()
 		}
 	}
 
@@ -61,13 +61,13 @@
 
 <div class="keyboardFrame">
     {#if data.keyboard === 'mansy'}
-        <MansyKeyboard bind:data {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
+        <MansyKeyboard bind:searchValue bind:taskTranslation {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
                        {toggleCaps}/>
     {:else if data.keyboard === 'rus'}
-        <RussianKeyboard bind:data {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
+        <RussianKeyboard bind:searchValue bind:taskTranslation {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
                          {toggleCaps}/>
     {:else}
-        <SymbolsKeyboard bind:data {translate} {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
+        <SymbolsKeyboard bind:searchValue bind:taskTranslation {translate} {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
                          {toggleCaps}/>
     {/if}
 </div>

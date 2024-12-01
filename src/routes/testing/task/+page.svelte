@@ -6,8 +6,9 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { answers } from '$lib/stores/answerStore';
 	import { settings } from '$lib/stores/settingsStore';
-	import TextArea from '../../../lib/components/keyboard/TextArea.svelte'
+	import TextArea from '../../../lib/components/keyboard/TextAreaTask.svelte'
 	import Keyboard from '../../../lib/components/keyboard/Keyboard.svelte'
+	import TextAreaTask from '../../../lib/components/keyboard/TextAreaTask.svelte'
 
 	let id = $state(0);
 	let dto = $state<Array<Record<string, string | number>>>([]);
@@ -97,7 +98,7 @@
 			<Divider />
 			<form class="task__form">
 				<label class="task__label">
-					<TextArea bind:taskTranslation value={data.textAreaValue} bind:data {openKeyboard}
+					<TextAreaTask bind:taskTranslation bind:data {openKeyboard}
 							  {classForTextArea}/>
 <!--					<textarea-->
 <!--						bind:value={taskTranslation}-->

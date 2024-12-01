@@ -5,8 +5,9 @@
 	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
 	import { BaseApi } from '$lib/plugins/api/modules';
 	import { fade } from 'svelte/transition';
-	import TextArea from '../../lib/components/keyboard/TextArea.svelte'
+	import TextArea from '../../lib/components/keyboard/TextAreaTask.svelte'
 	import Keyboard from '../../lib/components/keyboard/Keyboard.svelte'
+	import TextAreaSearch from '../../lib/components/keyboard/TextAreaSearch.svelte'
 	let data = $state({
 		textAreaValue: '',
 		keyboardValues: {
@@ -34,6 +35,7 @@
 
 		isLoading = true;
 		console.log('searchValue', searchValue)
+
 		const res = await customFetch.proxyFetch({
 			text: searchValue.toLowerCase(),
 			sourceLanguage,
@@ -73,7 +75,7 @@
 		<main class="translator__main">
 			<form class="translator__form">
 				<label class="translator__label">
-					<TextArea bind:searchValue value={data.textAreaValue} bind:data {openKeyboard}/>
+					<TextAreaSearch bind:searchValue value={data.textAreaValue} bind:data {openKeyboard}/>
 					<!--					<textarea-->
 					<!--						bind:value={searchValue}-->
 					<!--						class="translator__textarea"-->

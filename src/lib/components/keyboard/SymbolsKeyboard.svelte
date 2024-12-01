@@ -6,6 +6,7 @@
 
 	let {
 		    data = $bindable(),
+		    taskTranslation = $bindable(),
 		    openKeyboard,
 		    translate,
 		    toggleSwitchLanguage,

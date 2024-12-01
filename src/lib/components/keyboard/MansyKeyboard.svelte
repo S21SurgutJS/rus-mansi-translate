@@ -5,8 +5,9 @@
 	import SystemLineKeyboard from './SystemLineKeyboard.svelte'
 
 	let {
-		    data = $bindable(),
-		    openKeyboard,
+		    searchValue = $bindable(),
+		    taskTranslation = $bindable(),
+            openKeyboard,
 		    toggleSwitchLanguage,
 		    addValueToTextArea,
 		    toggleSwitchToSymbols,
@@ -79,19 +80,46 @@
 		// 'ю̄'
 	]
 
-	function removeLetter () {
-		let letter = data.textAreaValue.slice(-1)
-		console.log(letter)
-        if (letter === ' ') {
-			data.textAreaValue = data.textAreaValue.slice(0,
-		        -1)
-        } else if (mansyLetter.indexOf(letter) === -1) {
-			data.textAreaValue = data.textAreaValue.slice(0,
-				-2)
+	function removeLetter (task) {
+        let letter = ''
+		// if (letter === ' ') {
+		// 	task = task.slice(0,
+		// 		-1)
+		// } else if (mansyLetter.indexOf(letter) !== -1) {
+		// 	task = task.slice(0,
+		// 		-2)
+		// } else {
+		// 	task = task.slice(0,
+		// 		-1)
+		// }
+        if (searchValue) {
+            letter = searchValue.slice(-1)
+
+	        if (letter === ' ') {
+		        searchValue = searchValue.slice(0,
+			        -1)
+	        } else if (mansyLetter.indexOf(letter) !== -1) {
+		        searchValue = searchValue.slice(0,
+			        -2)
+	        } else {
+		        searchValue = searchValue.slice(0,
+			        -1)
+	        }
 		} else {
-			data.textAreaValue = data.textAreaValue.slice(0,
-				-1)
-		}
+	        letter = taskTranslation.slice(-1)
+
+	       if (letter === ' ') {
+			        taskTranslation = taskTranslation.slice(0,
+				        -1)
+		        } else if (mansyLetter.indexOf(letter) !== -1) {
+			        taskTranslation = taskTranslation.slice(0,
+				        -2)
+		        } else {
+			        taskTranslation = taskTranslation.slice(0,
+				        -1)
+		        }
+            }
+
 	}
 
 </script>
@@ -119,7 +147,7 @@
         {#each lettersThirdLine as item}
             <Letter {item} {addValueToTextArea}/>
         {/each}
-        <Backspace {removeLetter}/>
+        <Backspace {removeLetter} {taskTranslation} {searchValue}/>
     </div>
 
     <SystemLineKeyboard {openKeyboard} {toggleSwitchLanguage} {toggleSwitchToSymbols} {addValueToTextArea}/>

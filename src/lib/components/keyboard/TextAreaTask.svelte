@@ -1,21 +1,15 @@
 <script>
-	let { data = $bindable(), taskTranslation=$bindable(), searchValue=$bindable(), value, classForTextArea, openKeyboard } = $props()
+	let { data = $bindable(), taskTranslation = $bindable(), searchValue=$bindable(), value, classForTextArea, openKeyboard } = $props()
 
-    function generateClass () {
-		if (classForTextArea) {
-			return classForTextArea
-        }
-		return "translator__textarea"
-    }
 </script>
 
+    <textarea
+            bind:value={taskTranslation}
+            class="task__textarea"
+            placeholder="Введите перевод"
+            onclick={()=>openKeyboard()}
+    ></textarea>
 
-<textarea
-        bind:value={searchValue}
-        class={generateClass()}
-        placeholder="Введите текст"
-        onclick={()=>openKeyboard()}
-></textarea>
 
 <style>
     .translator__textarea {
