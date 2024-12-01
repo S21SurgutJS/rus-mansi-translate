@@ -20,7 +20,7 @@ function checkUserInputWord(userInput) {
 function checkUserInputPhrases(userInput) {
   let results = [];
 
-  for (let i = 0; i <translationOfPhrases.length; i++) {
+  for (let i = 0; i < translationOfPhrases.length; i++) {
     const task = translationOfPhrases[i];
     const userAnswer = userInput[i];
 
@@ -39,7 +39,7 @@ function checkUserInputPhrases(userInput) {
 function checkUserInputSentences(userInput) {
   let results = [];
 
-  for (let i = 0; i <translationOfSentences.length; i++) {
+  for (let i = 0; i < translationOfSentences.length; i++) {
     const task = translationOfSentences[i];
     const userAnswer = userInput[i];
 

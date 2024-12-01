@@ -1,15 +1,47 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Footer from '$lib/components/general/Footer.svelte';
+	import Icon from '$lib/components/general/Icon.svelte';
+	import { answers } from '$lib/stores/answerStore';
+	import { settings } from '$lib/stores/settingsStore';
+
+	const result = $answers;
+	console.log(result);
+	console.log(result);
+
+	let estimation = 0;
+
+	result.forEach((item) => {
+		if (item.correct) estimation++;
+	}, 0);
 </script>
 
-<div class="tales">
-	<header class="tales__header">
-		<h1 class="tales__title">А̄кврись - а̄кврись</h1>
+<div class="result">
+	<header class="result__header">
+		<h1 class="result__title">Итоги:</h1>
 	</header>
-	<div class="tales__container">
-		<main class="tales__main">
-			<div class="tales__wrapper">
-				<p class="tales__description">Выберите язык, с которого будет осуществляться перевод</p>
+	<div class="result__container">
+		<main class="result__main">
+			<div class="result__wrapper">
+				<p class="result__description">Твой результат:</p>
+				<p class="result__estimation">{estimation} из {result.length}</p>
+				<p class="result__congratulation">Ты большой молодец, продолжай в том же духе!</p>
+				<ul class="result__list">
+					{#each result as item, idx}
+						<li class="result__item item">
+							<p class="item__number">{idx + 1}</p>
+							<div class="result__wrapper">
+								<p class="item__word">{item.word} - {item.translation}</p>
+								<p class="item__answer">Ваш ответ: {item.answer}</p>
+							</div>
+							{#if item.correct}
+								<Icon iconId="correct-answer" width={26} height={19} />
+							{:else}
+								<Icon iconId="incorrect-answer" width={20} height={20} />
+							{/if}
+						</li>
+					{/each}
+				</ul>
 			</div>
 		</main>
 	</div>
@@ -17,7 +49,7 @@
 </div>
 
 <style lang="postcss">
-	.tales {
+	.result {
 		display: grid;
 		grid-template-rows: min-content 1fr min-content;
 		height: calc(100vh - 60px);
@@ -123,12 +155,29 @@
 			font-weight: 700;
 		}
 
+		&__estimation {
+			text-align: center;
+			font-size: 64px;
+			font-weight: 700;
+			color: #8cc445;
+		}
+
+		&__congratulation {
+			font-size: 20px;
+		}
+
 		&__description {
 			margin-bottom: 20px;
 
 			font-size: 24px;
-			font-weight: 400;
+			font-weight: 700;
 			text-align: center;
+		}
+
+		&__wrapper {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
 		}
 
 		&__main {
@@ -199,6 +248,32 @@
 		&__active {
 			color: white;
 			background-color: #519eaf;
+		}
+	}
+
+	.item {
+		display: grid;
+		grid-template-columns: 30px 1fr min-content;
+		justify-content: space-between;
+		align-items: center;
+		gap: 10px;
+
+		&__number {
+			font-size: 16px;
+			font-weight: 700;
+			color: #d0d0d0;
+		}
+
+		&__word {
+			font-size: 20px;
+			font-weight: 700;
+
+			color: #404040;
+		}
+		&__answer {
+			font-size: 14px;
+			font-weight: 700;
+			color: #959595;
 		}
 	}
 </style>

@@ -1,23 +1,23 @@
-const translationOfWords = [
-    {id: 1, word: "āпа", correctionTranslate: "люлька"},
-    {id: 2, word: "хāп", correctionTranslate: "лодка"},
-    {id: 3, word: "срысь", correctionTranslate: "море"},
-    {id: 4, word: "тумп", correctionTranslate: "остров"},
-    {id: 5, word: "āны", correctionTranslate: "блюдо"}
+export const words = [
+    { id: 1, mansi: "āпа", ru: "люлька" },
+    { id: 2, mansi: "хāп", ru: "лодка" },
+    { id: 3, mansi: "срысь", ru: "море" },
+    { id: 4, mansi: "тумп", ru: "остров" },
+    { id: 5, mansi: "āны", ru: "блюдо" }
 ];
 
-const translationOfPhrases = [
-    {id: 1, phrases: "А̄мпын тотвес", correctionTranslate: "Собака унесла"},
-    {id: 2, phrases: "Хот патыс", correctionTranslate: "Ветер стих"},
-    {id: 3, phrases: "Кӯсяррись титнопыл", correctionTranslate: "Бурундук огляделся"},
-    {id: 4, phrases: "Пупакв ла̄ви", correctionTranslate: "Медьведь отвечает"},
-    {id: 5, phrases: "Хо̄талэ ла̄ви", correctionTranslate: "Солнце ответило"}
+export const phrases = [
+    { id: 1, mansi: "А̄мпын тотвес", ru: "Собака унесла" },
+    { id: 2, mansi: "Хот патыс", ru: "Ветер стих" },
+    { id: 3, mansi: "Кӯсяррись титнопыл", ru: "Бурундук огляделся" },
+    { id: 4, mansi: "Пупакв ла̄ви", ru: "Медьведь отвечает" },
+    { id: 5, mansi: "Хо̄талэ ла̄ви", ru: "Солнце ответило" }
 ];
 
-const translationOfSentences = [
-    {id: 1, sentences: "А̄кврись - а̄кврись, тучаӈын хо̄та?", correctionTranslate: "Бабушка, бабушка, где твой тучан?"},
-    {id: 2, sentences: "Тувыг ēмты мисанув, луванум мгыс пум вруӈкве та вылтахтв", correctionTranslate: "Настанет лето и мы начинаем заготовлять сено для нашего скота"},
-    {id: 3, sentences: "Пупаквēг кӯсярыг о̄лэ̄г.", correctionTranslate: "Живут на свете медведь и бурундук"},
-    {id: 4, sentences: "Хо̄тал сака котарахтас.", correctionTranslate: "Солнце очень сильно грело."},
-    {id: 5, sentences: "Пупакве соваге но̄ӈхаль паттысаге.", correctionTranslate: "Медведь вытаращил глаза, смотрит на поле."}
+export const proposals = [
+    { id: 1, mansi: "А̄кврись - а̄кврись, тучаӈын хо̄та?", ru: "Бабушка, бабушка, где твой тучан?" },
+    { id: 2, mansi: "Тувыг ēмты мисанув, луванум мгыс пум вруӈкве та вылтахтв", ru: "Настанет лето и мы начинаем заготовлять сено для нашего скота" },
+    { id: 3, mansi: "Пупаквēг кӯсярыг о̄лэ̄г.", ru: "Живут на свете медведь и бурундук" },
+    { id: 4, mansi: "Хо̄тал сака котарахтас.", ru: "Солнце очень сильно грело." },
+    { id: 5, mansi: "Пупакве соваге но̄ӈхаль паттысаге.", ru: "Медведь вытаращил глаза, смотрит на поле." }
 ];

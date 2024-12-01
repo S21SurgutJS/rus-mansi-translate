@@ -1,42 +1,15 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Divider from '$lib/components/general/Divider.svelte';
 	import Footer from '$lib/components/general/Footer.svelte';
-	import Icon from '$lib/components/general/Icon.svelte';
-	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
-	import { BaseApi } from '$lib/plugins/api/modules';
-	import { settings } from '$lib/stores/notifyStore';
-	import { fade } from 'svelte/transition';
+	import { settings } from '$lib/stores/settingsStore';
 
-	let searchValue = $state('');
-	let translateValue = $state('');
 	let language = $state('');
 	let difficulty = $state('');
-	let isLoading = $state(false);
-
-	const customFetch = new BaseApi(fetch);
-
-	// async function translate() {
-	// 	const sourceLanguage = language === 'ru' ? 'rus_Cyrl' : 'mancy_Cyrl';
-	// 	const targetLanguage = language === 'ru' ? 'mancy_Cyrl' : 'rus_Cyrl';
-
-	// 	isLoading = true;
-
-	// 	const res = await customFetch.proxyFetch({
-	// 		text: searchValue,
-	// 		sourceLanguage,
-	// 		targetLanguage
-	// 	});
-	// 	isLoading = false;
-	// 	console.log(res.ok);
-	// 	translateValue = res.translatedText;
-	// }
 
 	function startTesting() {
 		$settings.difficulty = difficulty;
 		$settings.language = language;
-		console.log($settings);
-		// goto('/testing/questions');
+		goto('/testing/task');
 	}
 </script>
 
