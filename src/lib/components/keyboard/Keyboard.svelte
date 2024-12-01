@@ -3,7 +3,7 @@
 	import SymbolsKeyboard from './SymbolsKeyboard.svelte'
 	import RussianKeyboard from './RussianKeyboard.svelte'
 
-	let { data = $bindable(), searchValue=$bindable(), openKeyboard } = $props()
+	let { data = $bindable(), translate, searchValue=$bindable(), openKeyboard } = $props()
 
 	function addValueToTextArea (value) {
 		if (data.caps) {
@@ -67,7 +67,7 @@
         <RussianKeyboard bind:data {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
                          {toggleCaps}/>
     {:else}
-        <SymbolsKeyboard bind:data {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
+        <SymbolsKeyboard bind:data {translate} {openKeyboard} {toggleSwitchLanguage} {addValueToTextArea} {toggleSwitchToSymbols}
                          {toggleCaps}/>
     {/if}
 </div>
@@ -76,6 +76,7 @@
 <style>
     .keyboardFrame {
         position: absolute;
+        width: 100%;
         bottom: 0;
     }
 </style>

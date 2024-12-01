@@ -81,7 +81,11 @@
 
 	function removeLetter () {
 		let letter = data.textAreaValue.slice(-1)
-		if (mansyLetter.indexOf(letter) !== -1) {
+		console.log(letter)
+        if (letter === ' ') {
+			data.textAreaValue = data.textAreaValue.slice(0,
+		        -1)
+        } else if (mansyLetter.indexOf(letter) === -1) {
 			data.textAreaValue = data.textAreaValue.slice(0,
 				-2)
 		} else {

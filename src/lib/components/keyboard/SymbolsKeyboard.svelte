@@ -7,6 +7,7 @@
 	let {
 		    data = $bindable(),
 		    openKeyboard,
+		    translate,
 		    toggleSwitchLanguage,
 		    addValueToTextArea,
 		    toggleSwitchToSymbols,
@@ -38,6 +39,8 @@
 		'+',
 		'(',
 		')',
+        ',',
+        '.'
 	]
 
 	let lettersThirdLine = [
@@ -77,7 +80,7 @@
         {/each}
         <Backspace {removeLetter}/>
     </div>
-    <SystemLineKeyboard bind:data {openKeyboard} {toggleSwitchLanguage} {toggleSwitchToSymbols} {addValueToTextArea}/>
+    <SystemLineKeyboard bind:data {translate} {openKeyboard} {toggleSwitchLanguage} {toggleSwitchToSymbols} {addValueToTextArea}/>
 
 </div>
 <style>
@@ -88,7 +91,6 @@
     .mansyKeyboard {
         gap: 5px;
         padding: 4px;
-        /*width: 375px;*/
         height: 225px;
         background: #e8eaed;
     }

@@ -43,7 +43,6 @@
 		isLoading = false;
 		console.log(res);
 		translateValue = res.translatedText;
-		data.textAreaValue = ''
 		searchValue = ''
 	}
 
@@ -98,7 +97,7 @@
 		</main>
 	</div>
 	{#if data.enableKeyboard}
-		<Keyboard bind:data bind:searchValue {openKeyboard} />
+		<Keyboard bind:data bind:searchValue {openKeyboard} {translate} />
 	{/if}
 	<Footer />
 </div>

@@ -6,6 +6,7 @@
 	import Icon from '$lib/components/general/Icon.svelte';
 	import { answers } from '$lib/stores/answerStore';
 	import { settings } from '$lib/stores/settingsStore';
+	import TextArea from '../../../lib/components/keyboard/TextArea.svelte'
 
 	let id = $state(0);
 	let dto = $state<Array<Record<string, string | number>>>([]);
@@ -76,12 +77,13 @@
 			<Divider />
 			<form class="task__form">
 				<label class="task__label">
-					<textarea
-						bind:value={taskTranslation}
-						class="task__textarea"
-						placeholder="Введите перевод"
-					>
-					</textarea>
+					<TextArea bind:taskTranslation />
+<!--					<textarea-->
+<!--						bind:value={taskTranslation}-->
+<!--						class="task__textarea"-->
+<!--						placeholder="Введите перевод"-->
+<!--					>-->
+<!--					</textarea>-->
 					<span class="visually-hidden">Введите текст для перевода</span>
 				</label>
 			</form>

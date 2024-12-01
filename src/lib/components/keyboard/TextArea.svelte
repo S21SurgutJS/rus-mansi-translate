@@ -1,5 +1,5 @@
 <script>
-	let { data = $bindable(), searchValue= $bindable(), value, openKeyboard } = $props()
+	let { data = $bindable(), taskTranslation, searchValue= $bindable(), value, openKeyboard } = $props()
 </script>
 
 
