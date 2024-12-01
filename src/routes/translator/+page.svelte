@@ -46,7 +46,7 @@
 		isLoading = false;
 		console.log(res);
 		translateValue = res.translatedText;
-		searchValue = '';
+		//searchValue = '';
 	}
 
 	function reset() {
