@@ -2,6 +2,7 @@
 	import Divider from '$lib/components/general/Divider.svelte';
 	import Footer from '$lib/components/general/Footer.svelte';
 	import Icon from '$lib/components/general/Icon.svelte';
+	import Loading from '$lib/components/general/Loading.svelte';
 	import LanguageToggler from '$lib/components/LanguageToggler.svelte';
 	import { BaseApi } from '$lib/plugins/api/modules';
 	import { fade } from 'svelte/transition';
@@ -24,8 +25,8 @@
 			sourceLanguage,
 			targetLanguage
 		});
+
 		isLoading = false;
-		console.log(res.ok);
 		translateValue = res.translatedText;
 	}
 
@@ -62,6 +63,11 @@
 				</button>
 			</form>
 			<Divider />
+			{#if isLoading}
+				<div class="loader">
+					<Loading />
+				</div>
+			{/if}
 			<p class="translator__result">{translateValue}</p>
 		</main>
 	</div>
@@ -243,5 +249,11 @@
 			font-weight: 400;
 			color: var(--black);
 		}
+	}
+	.loader {
+		position: absolute;
+		bottom: 100px;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 </style>

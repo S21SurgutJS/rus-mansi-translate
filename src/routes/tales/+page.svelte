@@ -1,15 +1,5 @@
 <script lang="ts">
 	import Footer from '$lib/components/general/Footer.svelte';
-
-	document.addEventListener(
-		'selectionchange',
-		function (event) {
-			console.log('fdfs');
-			event.currentTarget;
-			const selection = getSelection().toString();
-		},
-		false
-	);
 </script>
 
 <div class="tales">
