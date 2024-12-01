@@ -7,6 +7,7 @@
 	import { answers } from '$lib/stores/answerStore';
 	import { settings } from '$lib/stores/settingsStore';
 	import TextArea from '../../../lib/components/keyboard/TextArea.svelte'
+	import Keyboard from '../../../lib/components/keyboard/Keyboard.svelte'
 
 	let id = $state(0);
 	let dto = $state<Array<Record<string, string | number>>>([]);
@@ -18,7 +19,19 @@
 	} else {
 		dto = words;
 	}
-
+	let data = $state({
+		textAreaValue: '',
+		keyboardValues: {
+			1: 'mansy',
+			2: 'rus',
+			3: 'symbols'
+		},
+		keyboard: 'mansy',
+		symbols: '',
+		caps: false,
+		enableKeyboard: false,
+		keyboardStyle: 'none'
+	});
 	let taskText: string = $state('');
 	let answer: string = $state('');
 	let taskTranslation = $state('');
@@ -28,7 +41,7 @@
 		answer = $settings.language === 'ru' ? dto[id].mansi : dto[id].ru;
 		taskTranslation = $answers[id] ? $answers[id].translation : '';
 	});
-
+	let classForTextArea = "task__textarea"
 	function prevTask() {
 		$answers[id] = {
 			word: taskText,
@@ -52,7 +65,14 @@
 		taskTranslation = '';
 		console.log($answers);
 	}
-
+	function openKeyboard (el) {
+		if (!data.enableKeyboard && data.keyboardStyle === 'none') {
+			data.enableKeyboard = !data.enableKeyboard
+		}
+		if (el === 'close') {
+			data.enableKeyboard = !data.enableKeyboard
+		}
+	}
 	function finishTask() {
 		$answers[id] = {
 			word: taskText,
@@ -77,7 +97,8 @@
 			<Divider />
 			<form class="task__form">
 				<label class="task__label">
-					<TextArea bind:taskTranslation />
+					<TextArea bind:taskTranslation value={data.textAreaValue} bind:data {openKeyboard}
+							  {classForTextArea}/>
 <!--					<textarea-->
 <!--						bind:value={taskTranslation}-->
 <!--						class="task__textarea"-->
@@ -109,6 +130,9 @@
 			</button>
 		{/if}
 	</div>
+	{#if data.enableKeyboard}
+		<Keyboard bind:data bind:taskTranslation {openKeyboard} />
+	{/if}
 	<Footer />
 </div>
 

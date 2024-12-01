@@ -3,7 +3,7 @@
 	import SymbolsKeyboard from './SymbolsKeyboard.svelte'
 	import RussianKeyboard from './RussianKeyboard.svelte'
 
-	let { data = $bindable(), translate, searchValue=$bindable(), openKeyboard } = $props()
+	let { data = $bindable(), taskTranslation=$bindable(), translate, searchValue=$bindable(), openKeyboard } = $props()
 
 	function addValueToTextArea (value) {
 		if (data.caps) {
